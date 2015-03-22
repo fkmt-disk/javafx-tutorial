@@ -10,7 +10,7 @@ import javafx.scene.paint.Color
 import javafx.scene.text.{Font, FontWeight, Text}
 import javafx.stage.Stage
 
-class Form extends Application {
+class Css extends Application {
   
   override def start(stage: Stage): Unit = {
     stage.setTitle("JavaFX Welcome")
@@ -23,6 +23,7 @@ class Form extends Application {
 
     val scenetitle = new Text("Welcome")
     scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20))
+    scenetitle.setId("welcome-text")
     grid.add(scenetitle, 0, 0, 2, 1)
 
     val userName = new Label("User Name:")
@@ -45,6 +46,7 @@ class Form extends Application {
       override def handle(e: ActionEvent): Unit = {
         actiontarget.setFill(Color.FIREBRICK)
         actiontarget.setText("Sign in button pressed")
+        actiontarget.setId("actiontarget")
       }
     })
 
@@ -55,16 +57,17 @@ class Form extends Application {
 
     val scene = new Scene(grid, 300, 275)
     stage.setScene(scene)
+    scene.getStylesheets.add(classOf[Css].getResource("css.css").toExternalForm)
 
     stage.show()
   }
   
 }
 
-object Form {
+object Css {
   
   def main(args: Array[String]): Unit = {
-    Application.launch(classOf[Form], args:_*)
+    Application.launch(classOf[Css], args:_*)
   }
   
 }
